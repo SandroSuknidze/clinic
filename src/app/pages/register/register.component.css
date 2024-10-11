@@ -1,0 +1,96 @@
+.register-section {
+    max-width: 1530px;
+    margin-top: 60px;
+    margin-left: 150px;
+    margin-bottom: 125px;
+}
+
+.register-h2 {
+    color: #18a4e1;
+    font-weight: 500;
+    font-size: 26px;
+}
+
+.head-input {
+    padding: 16px 30px;
+    border-radius: 50px;
+    font-size: 14px;
+    border: 1px solid #ecf2f8;
+    outline: none;
+    font-family: "FiraGO", sans-serif;
+    font-weight: 400;
+    width: 480px;
+    transition: 500ms;
+    color: #18a4e180;
+}
+
+.head-input:focus {
+    border: 1px solid #18a4e180;
+}
+
+::placeholder {
+    color: #b4c2cc;
+}
+
+.codes {
+    display: flex;
+    justify-content: space-between;
+}
+
+.name-lab {
+    margin-left: 20px;
+    margin-bottom: 5px;
+}
+
+.sub-name-lab {
+    color: #0533544d;
+    margin-right: 20px;
+}
+.name-cont {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+.error {
+    color: #ff2c52;
+    font-size: 14px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+.row {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: row;
+    gap: 40px;
+}
+
+.mail-icon {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    transform: translate(-50%);
+    cursor: pointer;
+}
+
+.em {
+    padding-right: 50px;
+}
+
+.last-row {
+    display: flex;
+    margin-top: 13px;
+    flex-direction: row-reverse;
+    align-items: end;
+}
+
+.register-btn {
+    background-color: #053354;
+    padding: 15px 35px;
+    font-weight: 500;
+    color: white;
+    border-radius: 50px;
+    font-family: "FiraGo", sans-serif;
+    cursor: pointer;
+}

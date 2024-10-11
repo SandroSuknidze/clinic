@@ -1,1 +1,62 @@
-<p>register works!</p>
+<section class="register-section">
+    <h2 class="register-h2">რეგისტრაცია</h2>
+    <form class="form-cont">
+        <div class="row">
+            <div class="name-cont">
+                <label class="name-lab">სახელი</label>
+                <input
+                    type="text"
+                    class="head-input"
+                    placeholder="( მინიმუმ 5 სიმბოლო )"
+                />
+            </div>
+            <div class="name-cont">
+                <label class="name-lab">Email</label>
+                <input type="email" class="head-input em" placeholder="" />
+                <img
+                    src="/assets/images/mail.svg"
+                    alt="mail"
+                    class="mail-icon"
+                />
+            </div>
+            <div class="name-cont">
+                <label class="name-lab">პირადი ნომერი</label>
+                <input
+                    type="number"
+                    class="head-input"
+                    placeholder="00000000000"
+                />
+            </div>
+        </div>
+        <div class="row">
+            <div class="name-cont">
+                <label class="name-lab">გვარი</label>
+                <input
+                    type="text"
+                    class="head-input"
+                    placeholder="( მინიმუმ 5 სიმბოლო )"
+                />
+            </div>
+            <div class="name-cont">
+                <div class="codes">
+                    <label class="name-lab">აქტივაციის კოდი</label>
+                    <label class="sub-name-lab">ვადა 2 წთ</label>
+                </div>
+
+                <input type="text" class="head-input" placeholder="" />
+                <div class="error">*ბმულის მოქედების ვადა ამოიწურა</div>
+            </div>
+            <div class="name-cont">
+                <label class="name-lab">პაროლი</label>
+                <input
+                    type="text"
+                    class="head-input"
+                    placeholder="( მინიმუმ 8 სიმბოლო : @ 7 , )"
+                />
+            </div>
+        </div>
+        <div class="last-row">
+            <button class="register-btn" type="button">რეგისტრაცია</button>
+        </div>
+    </form>
+</section>

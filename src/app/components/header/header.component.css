@@ -32,12 +32,33 @@ li {
   text-decoration: none;
   list-style: none;
   cursor: pointer;
+  position: relative;
+}
+
+li::after {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: #ECF2F8;
+  left: 0;
+  bottom: -19px;
+}
+
+ul li:first-child::after {
+  background-color: #18A4E1;
+}
+
+ul li:first-child {
+  font-weight: 500;
 }
 
 nav {
   margin-left: 143px;
   margin-top: auto;
   margin-bottom: auto;
+  border-bottom: 1px solid #ECF2F8;
+  position: relative;
 }
 
 .nav-auth {
@@ -145,11 +166,13 @@ nav {
   background-color: #f9fbfd;
   border: 1px solid #f9fbfd;
   outline: none;
-  font-family: "FiraGO", sans-serif;
-  color: #b4c2cc;
   font-weight: 400;
   width: 480px;
   transition: 500ms;
+}
+
+::placeholder {
+  color: #b4c2cc;
 }
 
 .head-input:focus {
