@@ -1,0 +1,100 @@
+
+.eye-cont {
+    border-radius: 50px;
+    background-color: #ecf2f880;
+    display: flex;
+    flex-direction: row;
+    gap: 6px;
+    padding: 5px 15px 5px 10px;
+    width: max-content;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+}
+
+.view-count {
+    color: #05335480;
+}
+
+.pin-cont {
+    position: absolute;
+    right: 20px;
+    top: 11px;
+}
+
+.item-cont {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.item-cont-h4 {
+    font-weight: 400;
+    color: #053354;
+    font-size: 18px;
+    margin-top: 15px;
+    margin-bottom: 9px;
+}
+
+.item-cont-p {
+    color: #0533544d;
+    margin-bottom: 6px;
+}
+
+.item-cont-sec {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 6px;
+    background-color: #ecf2f8;
+    border-radius: 25px;
+    padding: 16px 23px;
+    color: #053354;
+    margin-top: 22px;
+    cursor: pointer;
+    border: 1px solid #ecf2f8;
+    transition: 500ms;
+}
+
+.avatar {
+    border-radius: 100%;
+    width: 157px;
+    height: 157px;
+    object-fit: cover;
+    margin-top: 31px;
+}
+
+.item-cont-btn {
+    font-family: "FiraGO", sans-serif;
+    font-size: 16px;
+    color: #053354;
+    cursor: pointer;
+    transition: 500ms;
+}
+
+.arrow-blue {
+    display: none;
+}
+
+.item-cont-sec:hover .arrow-blue {
+    display: block;
+    transition: 500ms;
+}
+
+.item-cont-sec:hover .arrow-black {
+    display: none;
+    transition: 500ms;
+}
+
+.item-cont-sec:hover .item-cont-btn {
+    color: #18a4e1;
+    transition: 500ms;
+}
+
+.item-cont-sec:hover {
+    border: 1px solid #18a4e1;
+    background-color: transparent;
+    transition: 500ms;
+}

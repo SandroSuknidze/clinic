@@ -1,0 +1,26 @@
+<div class="eye-cont">
+    <img src="/assets/images/eye.png" alt="eye" />
+    <div class="view-count">129 371</div>
+</div>
+<div class="pin-cont">
+    <img src="/assets/images/pin.svg" alt="pin" />
+</div>
+<div class="item-cont">
+    <img src="/assets/images/image.jpg" alt="avatar" class="avatar" />
+    <h4 class="item-cont-h4">გიორგი ხორავა</h4>
+    <p class="item-cont-p">კარდიოლოგი / არითმოლოგი</p>
+    <form>
+        <p-rating
+            [(ngModel)]="value"
+            name="first"
+            [stars]="value"
+            [readonly]="true"
+            [cancel]="false"
+        />
+    </form>
+    <div class="item-cont-sec">
+        <button class="item-cont-btn">მიღებაზე ჩაწერა</button>
+        <img src="/assets/images/arrow.svg" alt="" class="arrow-blue" />
+        <img src="/assets/images/arrow-black.svg" alt="" class="arrow-black" />
+    </div>
+</div>
