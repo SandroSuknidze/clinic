@@ -1,0 +1,25 @@
+<div class="category-list-item">გიორგი ხორავა</div>
+<div class="category-list-item item-category">ანდროლოგი</div>
+<div class="category-list-item item-photo">
+    <img src="/assets/images/avatar-list.jpg" alt="" class="avatar-list">
+</div>
+<div class="category-list-item item-rating">
+    <form>
+        <p-rating
+            [(ngModel)]="value"
+            name="first"
+            [stars]="value"
+            [readonly]="true"
+            [cancel]="false"
+        />
+    </form>
+</div>
+<div class="category-list-item operations">
+    <div class="green-circle">
+        <img src="/assets/images/pencil-green.svg" alt="pencil" class="pencil-image">
+    </div>
+    <div class="red-circle">
+        <img src="/assets/images/delete-white.svg" alt="delete">
+
+    </div>
+</div>

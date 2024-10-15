@@ -1,0 +1,46 @@
+.category-list-item {
+    width: 20%;
+}
+
+.green-circle {
+    background-color: #DAFAEE;
+    border-radius: 100%;
+    width: 42px;
+    height: 42px;
+    padding: 6px 8px 10px;
+    cursor: pointer;
+}
+
+.red-circle {
+    background-color: #FF93A6;
+    border-radius: 100%;
+    width: 42px;
+    height: 42px;
+    display: flex;
+    padding: 8px 9px 10px;
+    cursor: pointer;
+}
+
+.operations {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    gap: 20px;
+}
+
+.item-photo {
+    display: flex;
+    justify-content: center;
+}
+
+.item-rating {
+    display: flex;
+    justify-content: center;
+}
+
+.avatar-list {
+    width: 38px;
+    height: 38px;
+    border-radius: 100%;
+    object-fit: cover;
+}

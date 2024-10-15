@@ -1,0 +1,84 @@
+section {
+    display: flex;
+    justify-content: center;
+    
+}
+
+.categories-section {
+    max-width: 1628px;
+    width: 100%;
+    margin-bottom: 279px;
+}
+
+.h2-header {
+    color: #18A4E1;
+    font-size: 26px;
+    font-weight: 500;
+    margin-top: 60px;
+}
+
+.categories-cont {
+    border-radius: 10px;
+    box-shadow: 0px 4px 30px 0px #0533540D;
+}
+
+.head {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 44px 15px 34px;
+    background-color: #F0FAFF;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+}
+
+.head > div{
+    width: 20%;
+    color: #053354;
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.head-photo {
+    justify-content: center;
+    display: flex;
+}
+
+.head-rating {
+    justify-content: center;
+    display: flex;
+}
+
+.category-list {
+    display: flex;
+    flex-direction: row;
+    padding: 8px 34px;
+    align-items: center;
+    border-bottom: 1px solid #ECF2F8;
+
+}
+
+.category-list-cont {
+    max-height: 531px;
+    overflow: auto;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+/* Style the track (background) */
+::-webkit-scrollbar-track {
+    background-color: #ECF2F8; /* Background of the scrollbar */
+    border-bottom-right-radius: 10px;
+}
+
+/* Style the scrollbar handle (thumb) */
+::-webkit-scrollbar-thumb {
+    background-color: #555; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Make it round */
+}
+
+/* Change the color when hovering over the scrollbar handle */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #053354; /* Darker color when hovered */
+}

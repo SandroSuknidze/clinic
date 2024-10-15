@@ -147,6 +147,7 @@ h3 {
     border-top: 1px solid #ECF2F8;
     padding: 13px 40px 20px 40px;
     font-weight: 400;
+    cursor: pointer;
 }
 
 .arrow-blue-down {

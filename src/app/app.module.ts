@@ -10,6 +10,8 @@ import { ErrorComponent } from './components/error/error.component';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
+import { CategoriesComponent } from './pages/categories/categories.component';
+import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { ModalComponent } from './components/modal/modal.component';
     RegisterComponent,
     ErrorComponent,
     ModalComponent,
+    CategoriesComponent,
+    CategoryListItemComponent,
   ],
   imports: [
     BrowserModule,
