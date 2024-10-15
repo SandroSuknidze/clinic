@@ -1,79 +1,90 @@
 <header>
-  <div class="head">
-    <div class="nav-left" routerLink="/">
-      <img src="/assets/images/logo.png" alt="" />
-      <h2 class="nav-left-h2">კლინიკა</h2>
-    </div>
-    <nav>
-      <ul>
-        <li>ექიმები</li>
-        <li>კლინიკები</li>
-        <li>ანოტაციები</li>
-        <li>აქციები</li>
-        <li>სერვისები</li>
-        <li>მედიკამენტები</li>
-        <li>კონტაქტი</li>
-      </ul>
-    </nav>
-    <div class="nav-auth">
-      <div class="auth">ავტორიზაცია</div>
-      <div>/</div>
-      <div routerLink="/register" class="register">რეგისტრაცია</div>
-    </div>
-    <div class="nav-lang">ENG</div>
-  </div>
-  <div class="head-under">
-    <div class="left-cont">
-      <div class="call-cont">
-        <a href="tel:032 2 100 100" class="">
-          <div class="white-circle">
-            <img src="/assets/images/call.svg" alt="call" class="call" />
-          </div>
-        </a>
-        <div class="num n">
-          <a href="tel:032 2 100 100">032 2 100 100</a>
+    <div class="head">
+        <div class="nav-left" routerLink="/">
+            <img src="/assets/images/logo.png" alt="" />
+            <h2 class="nav-left-h2">კლინიკა</h2>
         </div>
-      </div>
-      <div class="call-cont">
-        <a
-          href="https://www.google.com/maps/place/10+Iakob+Nikoladze+St,+T'bilisi/data=!4m2!3m1!1s0x40440cd3e5f99891:0x7b588ec507aa6ab4?sa=X&ved=1t:242&ictx=111"
-        >
-          <div class="white-circle">
-            <img
-              src="/assets/images/location.svg"
-              alt="location"
-              class="location"
-            />
-          </div>
-        </a>
+        <nav>
+            <ul>
+                <li>ექიმები</li>
+                <li>კლინიკები</li>
+                <li>ანოტაციები</li>
+                <li>აქციები</li>
+                <li>სერვისები</li>
+                <li>მედიკამენტები</li>
+                <li>კონტაქტი</li>
+            </ul>
+        </nav>
+        <div class="nav-auth">
+            <div class="auth" (click)="toggleModal()">ავტორიზაცია</div>
+            <div>/</div>
+            <div routerLink="/register" class="register">რეგისტრაცია</div>
+        </div>
+        <div class="nav-lang">ENG</div>
+    </div>
+    <div class="head-under">
+        <div class="left-cont">
+            <div class="call-cont">
+                <a href="tel:032 2 100 100" class="">
+                    <div class="white-circle">
+                        <img
+                            src="/assets/images/call.svg"
+                            alt="call"
+                            class="call"
+                        />
+                    </div>
+                </a>
+                <div class="num n">
+                    <a href="tel:032 2 100 100">032 2 100 100</a>
+                </div>
+            </div>
+            <div class="call-cont">
+                <a
+                    href="https://www.google.com/maps/place/10+Iakob+Nikoladze+St,+T'bilisi/data=!4m2!3m1!1s0x40440cd3e5f99891:0x7b588ec507aa6ab4?sa=X&ved=1t:242&ictx=111"
+                >
+                    <div class="white-circle">
+                        <img
+                            src="/assets/images/location.svg"
+                            alt="location"
+                            class="location"
+                        />
+                    </div>
+                </a>
 
-        <div class="num">
-          <a
-            href="https://www.google.com/maps/place/10+Iakob+Nikoladze+St,+T'bilisi/data=!4m2!3m1!1s0x40440cd3e5f99891:0x7b588ec507aa6ab4?sa=X&ved=1t:242&ictx=111"
-          >
-            იაკობ ნიკოლაძე №10
-          </a>
+                <div class="num">
+                    <a
+                        href="https://www.google.com/maps/place/10+Iakob+Nikoladze+St,+T'bilisi/data=!4m2!3m1!1s0x40440cd3e5f99891:0x7b588ec507aa6ab4?sa=X&ved=1t:242&ictx=111"
+                    >
+                        იაკობ ნიკოლაძე №10
+                    </a>
+                </div>
+            </div>
         </div>
-      </div>
+        <div class="right-cont">
+            <div>
+                <input
+                    type="text"
+                    class="head-input"
+                    placeholder="მოძებნე ექიმის სახელით"
+                />
+            </div>
+            <div>
+                <input
+                    type="text"
+                    class="head-input"
+                    placeholder="მოძებნე სპეციალობით"
+                />
+            </div>
+            <div class="black-circle">
+                <img
+                    src="/assets/images/search.svg"
+                    alt="search"
+                    class="search-svg"
+                />
+            </div>
+        </div>
     </div>
-    <div class="right-cont">
-      <div>
-        <input
-          type="text"
-          class="head-input"
-          placeholder="მოძებნე ექიმის სახელით"
-        />
-      </div>
-      <div>
-        <input
-          type="text"
-          class="head-input"
-          placeholder="მოძებნე სპეციალობით"
-        />
-      </div>
-      <div class="black-circle">
-        <img src="/assets/images/search.svg" alt="search" class="search-svg" />
-      </div>
-    </div>
-  </div>
 </header>
+@if(isModalOpen) {
+  <app-modal (toggle)="toggleModal()"></app-modal>
+}

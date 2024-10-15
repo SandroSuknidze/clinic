@@ -9,6 +9,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule } from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { FormsModule } from '@angular/forms';
     FooterComponent,
     RegisterComponent,
     ErrorComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
+  isModalOpen: boolean = true;
 
+  toggleModal() {
+    this.isModalOpen = !this.isModalOpen;
+  }
 }
