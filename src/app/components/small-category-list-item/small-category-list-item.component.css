@@ -1,0 +1,39 @@
+.categories {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: row;
+    padding-top: 10.5px;
+    padding-bottom: 10.5px;
+    cursor: pointer;
+    padding-left: 65px;
+    padding-right: 65px;
+}
+
+.cat-number {
+    width: 35%;
+    color: #0533544d;
+    text-align: start;
+}
+.cat-name {
+    width: 65%;
+    color: #053354;
+    text-align: start;
+}
+
+.cat-arrow {
+    visibility: hidden;
+    margin-right: -20px;
+}
+
+.categories:hover .cat-arrow {
+    visibility: visible;
+}
+
+.categories:hover .cat-number {
+    color: #18a4e1;
+}
+
+.categories:hover {
+    background-color: #ecf2f880;
+}
+
