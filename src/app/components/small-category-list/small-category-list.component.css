@@ -1,6 +1,5 @@
 .list {
     max-width: 350px;
-    /* max-height: 800px; */
     border-radius: 10px;
     background-color: white;
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
@@ -41,10 +40,15 @@ h3 {
     width: 210px;
 }
 
-.arrow-blue-down {
+.arrow-blue {
     margin-left: 8px;
+    height: 7px;
+    width: 12px;
 }
 
+.rotate-180 {
+    transform: rotate(180deg);
+}
 
 .cat-cont {
     max-height: 635px;

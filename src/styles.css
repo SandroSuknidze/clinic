@@ -47,3 +47,7 @@ ul {
 .p-rating .p-rating-icon {
   color: #FFD233;
 }
+
+.p-rating {
+    gap: 7px;
+}
