@@ -12,6 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
+import { CalendarComponent } from './components/calendar/calendar.component';
+import { ReservationComponent } from './pages/reservation/reservation.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +25,8 @@ import { CategoryListItemComponent } from './components/category-list-item/categ
     ModalComponent,
     CategoriesComponent,
     CategoryListItemComponent,
+    CalendarComponent,
+    ReservationComponent,
   ],
   imports: [
     BrowserModule,
