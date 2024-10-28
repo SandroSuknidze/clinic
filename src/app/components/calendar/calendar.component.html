@@ -12,36 +12,35 @@
         <div *ngFor="let day of displayedWeek" class="day-header">
             {{ daysOfWeek[day.getDay()] }} {{ day | date : "d" }}
         </div>
-
         <ng-container *ngFor="let time of timeSlots">
             <div class="time-slot">{{ time }}</div>
-            <ng-container *ngFor="let day of displayedWeek">
+            @for (day of displayedWeek; track $index) {
                 <div class="calendar-cell">
-                    <ng-container *ngIf="getEventsForDayAndTime(day, time).length > 0; else emptyCell">
-                        <ng-container *ngFor="let event of getEventsForDayAndTime(day, time)">
-                            
-                            <div *ngIf="event.id === 1" class="activity reservation">
-                                <div> ჩემი ჯავშანი</div>
-                                <div (click)="deleteReservation(event.id, day, time)">X</div>
-                            </div>
-
-                            <div *ngIf="event.available === false" class="activity off"></div>
-
-                            <!-- Else case: Handle other events -->
-                            <div *ngIf="event.id !== 1 && event.available !== false">
-                                <div class="activity"><div>ჩემი ჯავშანი</div><div (click)="deleteReservation(event.id, day, time)">X</div></div>
-                            </div>
-
-                        </ng-container>
-                    </ng-container>
-                    
-                    <ng-template #emptyCell>
+                    @if (getEventsForDayAndTime(day, time).length > 0) {
+                        @for (event of getEventsForDayAndTime(day, time); track $index) {
+                            <!-- suppose my id is 1 -->
+                            @if (event.id === 1) {
+                                <div class="activity reservation">
+                                    <div> ჩემი ჯავშანი</div>
+                                    <div (click)="deleteReservation(event.id, day, time)">
+                                        <div class="white-circle">
+                                            <img src="/assets/images/close.svg" alt="">
+                                        </div>
+                                    </div>
+                                </div>
+                            } @else {
+                                <div class="activity off"></div>
+                            }
+                        }
+                    } @else if (daysOfWeek[day.getDay()] === 'Sat' || daysOfWeek[day.getDay()] === 'Sun') {
+                        <div class="activity off yellow"></div>
+                    } @else {
                         <div class="activity empty" (click)="makeReservation(day, time)">
-                            <span>+</span> დაჯავშნა
+                            <span>+&nbsp;</span> დაჯავშნა
                         </div>
-                    </ng-template>
+                    }
                 </div>
-            </ng-container>
+            }
         </ng-container>
 
         <button (click)="console()">button</button>

@@ -23,11 +23,15 @@ export class CalendarComponent implements OnInit {
   ];
 
   events: any[] = [
-    { name: 'Meeting', time: '9:00 - 10:00', date: '2024-10-21', available: false, id: 10 },
-    { name: 'Gym', time: '13:00 - 14:00', date: '2024-10-22', available: true, id: 1 },
-    { name: 'Doctor', time: '11:00 - 12:00', date: '2024-10-23', available: false, id: 10 },
-    { name: 'Doctor', time: '11:00 - 12:00', date: '2024-11-23', available: true, id: 1 },
-    { name: 'Doctor', time: '11:00 - 12:00', date: '2024-10-25', available: true, id: 1, desc: 'baro' },
+    { time: '9:00 - 10:00', date: '2024-10-21', id: 10, desc: 'baro' },
+    { time: '13:00 - 14:00', date: '2024-10-22', id: 1, desc: 'baro' },
+    { time: '11:00 - 12:00', date: '2024-10-23', id: 10, desc: 'baro' },
+    { time: '11:00 - 12:00', date: '2024-10-28', id: 10, desc: 'baro' },
+    { time: '11:00 - 12:00', date: '2024-10-25', id: 10, desc: 'baro' },
+    { time: '11:00 - 12:00', date: '2024-11-23', id: 1, desc: 'baro' },
+    { time: '11:00 - 12:00', date: '2024-10-25', id: 1, desc: 'baro' },
+    { time: '11:00 - 12:00', date: '2024-11-1', id: 1, desc: 'baro' },
+    { time: '10:00 - 11:00', date: '2024-11-1', id: 1, desc: 'baro' },
   ];
 
   constructor() { }
