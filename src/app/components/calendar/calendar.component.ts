@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-calendar',
@@ -23,18 +24,18 @@ export class CalendarComponent implements OnInit {
   ];
 
   events: any[] = [
-    { time: '9:00 - 10:00', date: '2024-10-21', id: 10, desc: 'baro' },
-    { time: '13:00 - 14:00', date: '2024-10-22', id: 1, desc: 'baro' },
-    { time: '11:00 - 12:00', date: '2024-10-23', id: 10, desc: 'baro' },
-    { time: '11:00 - 12:00', date: '2024-10-28', id: 10, desc: 'baro' },
-    { time: '11:00 - 12:00', date: '2024-10-25', id: 10, desc: 'baro' },
-    { time: '11:00 - 12:00', date: '2024-11-23', id: 1, desc: 'baro' },
-    { time: '11:00 - 12:00', date: '2024-10-25', id: 1, desc: 'baro' },
-    { time: '11:00 - 12:00', date: '2024-11-1', id: 1, desc: 'baro' },
-    { time: '10:00 - 11:00', date: '2024-11-1', id: 1, desc: 'baro' },
+    { timeSlot: '9:00 - 10:00', date: '2024-10-21', userId: 10, desc: 'baro' },
+    { timeSlot: '13:00 - 14:00', date: '2024-10-22', userId: 1, desc: 'baro' },
+    { timeSlot: '10:00 - 11:00', date: '2024-11-1', userId: 1, desc: 'baro' },
+    { timeSlot: '11:00 - 12:00', date: '2024-10-28', userId: 10, desc: 'baro' },
+    { timeSlot: '11:00 - 12:00', date: '2024-10-25', userId: 10, desc: 'baro' },
+    { timeSlot: '11:00 - 12:00', date: '2024-11-23', userId: 1, desc: 'baro' },
+    { timeSlot: '11:00 - 12:00', date: '2024-10-25', userId: 1, desc: 'baro' },
+    { timeSlot: '11:00 - 12:00', date: '2024-11-1', userId: 1, desc: 'baro' },
+    { timeSlot: '11:00 - 12:00', date: '2024-10-23', userId: 10, desc: 'baro' },
   ];
 
-  constructor() { }
+  constructor(private toastr: ToastrService) { }
 
 
   console() {
@@ -49,10 +50,10 @@ export class CalendarComponent implements OnInit {
     this.updateWeek();
   }
 
-  // Method to get events for a specific day and time
-  getEventsForDayAndTime(day: Date, time: string) {
+  // Method to get events for a specific day and timeSlot
+  getEventsForDayAndTime(day: Date, timeSlot: string) {
     const formattedDate = `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`;
-    return this.events.filter(event => event.date === formattedDate && event.time === time);
+    return this.events.filter(event => event.date === formattedDate && event.timeSlot === timeSlot);
   }
 
   // Update the displayed week and the current month/year
@@ -91,23 +92,33 @@ export class CalendarComponent implements OnInit {
     return monday;
   }
 
-  makeReservation(day: Date, time: string) {
-    const date = `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`;
+  makeReservation(day: Date, timeSlot: string) {
+    // TODO: make to Georgia timezone
+    if(day.getTime() < Date.now()) {
+      console.log(day.getTime());
+      console.log(Date.now());
+    
+      // TODO: make it correct
+      this.toastr.warning('რანაირად ჯავშნი წარსულში?', 'ეუფ');
+    } else {
+      const date = `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`;
 
-    this.events.push({
-      name: 'test',
-      time: time,
-      date: date,
-      available: true,
-      id: 1,
-      desc: 'baro'
-    });
+      this.events.push({
+        name: 'test',
+        timeSlot: timeSlot,
+        date: date,
+        available: true,
+        userId: 1,
+        desc: 'baro'
+      });
+    }
+
 
   }
 
-  deleteReservation(id: number, day: Date, time: string) {
+  deleteReservation(userId: number, day: Date, timeSlot: string) {
     const date = `${day.getFullYear()}-${day.getMonth() + 1}-${day.getDate()}`;
-    this.events = this.events.filter(event => !(event.id === id && event.date === date && event.time === time));
+    this.events = this.events.filter(event => !(event.userId === userId && event.date === date && event.timeSlot === timeSlot));
   }
 
 }

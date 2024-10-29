@@ -14,6 +14,8 @@ import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
+import { provideAnimations } from '@angular/platform-browser/animations';
+import { provideToastr } from 'ngx-toastr';
 
 @NgModule({
   declarations: [
@@ -34,7 +36,12 @@ import { ReservationComponent } from './pages/reservation/reservation.component'
     RatingModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    provideAnimations(),
+    provideToastr({
+      // positionClass: 'toast-top-center'
+    }),
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

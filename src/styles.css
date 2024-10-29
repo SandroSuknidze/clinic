@@ -1,6 +1,8 @@
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import url("https://free.bboxtype.com/embedfonts/?family=FiraGO:200,300,400,500,600,700,800,900");
+@import 'ngx-toastr/toastr';
+
 * {
     box-sizing: border-box;
 }
