@@ -8,7 +8,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { RegisterComponent } from './pages/register/register.component';
 import { ErrorComponent } from './components/error/error.component';
 import { RatingModule } from 'primeng/rating';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
 import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
@@ -16,6 +16,7 @@ import { CalendarComponent } from './components/calendar/calendar.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
+import { HttpClient, HttpClientModule, provideHttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -34,10 +35,12 @@ import { provideToastr } from 'ngx-toastr';
     BrowserModule,
     AppRoutingModule,
     RatingModule,
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [
     provideAnimations(),
+    provideHttpClient(),
     provideToastr({
       // positionClass: 'toast-top-center'
     }),

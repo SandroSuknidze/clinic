@@ -1,41 +1,44 @@
 <section class="register-section">
     <h2 class="register-h2">რეგისტრაცია</h2>
-    <form class="form-cont">
+    <form class="form-cont" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
         <div class="row">
             <div class="name-cont">
                 <label class="name-lab">სახელი</label>
-                <input
-                    type="text"
-                    class="head-input"
-                    placeholder="( მინიმუმ 5 სიმბოლო )"
-                />
+                <input type="text" class="head-input" placeholder="( მაგ: სანდრო )" formControlName="firstName" />
+                <div class="error"
+                    [class.visible]="profileForm.get('firstName')?.touched && profileForm.get('firstName')?.errors">
+                    {{ getErrorMessage('firstName') }}
+                </div>
             </div>
             <div class="name-cont">
                 <label class="name-lab">Email</label>
-                <input type="email" class="head-input em" placeholder="" />
-                <img
-                    src="/assets/images/mail.svg"
-                    alt="mail"
-                    class="mail-icon"
-                />
+                <div class="email-cont">
+                    <input type="email" class="head-input em" placeholder="( მაგ: sandro@example.com )"
+                        formControlName="email" />
+                    <img src="/assets/images/mail.svg" alt="mail" class="mail-icon" />
+                </div>
+                <div class="error"
+                    [class.visible]="profileForm.get('email')?.touched && profileForm.get('email')?.errors">
+                    {{ getErrorMessage('email') }}
+                </div>
             </div>
             <div class="name-cont">
                 <label class="name-lab">პირადი ნომერი</label>
-                <input
-                    type="number"
-                    class="head-input"
-                    placeholder="00000000000"
-                />
+                <input type="number" class="head-input" placeholder="00000000000" formControlName="personalNumber" />
+                <div class="error"
+                    [class.visible]="profileForm.get('personalNumber')?.touched && profileForm.get('personalNumber')?.errors">
+                    {{ getErrorMessage('personalNumber') }}
+                </div>
             </div>
         </div>
-        <div class="row">
+        <div class="row2">
             <div class="name-cont">
                 <label class="name-lab">გვარი</label>
-                <input
-                    type="text"
-                    class="head-input"
-                    placeholder="( მინიმუმ 5 სიმბოლო )"
-                />
+                <input type="text" class="head-input" placeholder="( მაგ: სანდროეული )" formControlName="lastName" />
+                <div class="error"
+                    [class.visible]="profileForm.get('lastName')?.touched && profileForm.get('lastName')?.errors">
+                    {{ getErrorMessage('lastName') }}
+                </div>
             </div>
             <div class="name-cont">
                 <div class="codes">
@@ -48,15 +51,16 @@
             </div>
             <div class="name-cont">
                 <label class="name-lab">პაროლი</label>
-                <input
-                    type="text"
-                    class="head-input"
-                    placeholder="( მინიმუმ 8 სიმბოლო : @ 7 , )"
-                />
+                <input type="password" class="head-input" placeholder="( მინიმუმ 8 სიმბოლო )"
+                    formControlName="password" />
+                <div class="error"
+                    [class.visible]="profileForm.get('password')?.touched && profileForm.get('password')?.errors">
+                    {{ getErrorMessage('password') }}
+                </div>
             </div>
         </div>
         <div class="last-row">
-            <button class="register-btn" type="button">რეგისტრაცია</button>
+            <button class="register-btn" type="submit" [disabled]="!profileForm.valid">რეგისტრაცია</button>
         </div>
     </form>
 </section>
