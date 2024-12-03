@@ -2,12 +2,12 @@ import { AbstractControl, AsyncValidatorFn, ValidationErrors } from '@angular/fo
 import { Observable, debounceTime, first, map, switchMap } from 'rxjs';
 import { AuthService } from '../services/auth.service';
 
-export function emailExistsValidator(authService: AuthService): AsyncValidatorFn {
+export function personalIdExistsValidator(authService: AuthService): AsyncValidatorFn {
     return (control: AbstractControl): Observable<ValidationErrors | null> => {
         return control.valueChanges.pipe(
             debounceTime(1000),
-            switchMap((value) => authService.checkEmailExists(value).pipe(
-                map((emailExists) => (emailExists ? { emailExists: true } : null))
+            switchMap((value) => authService.checkPersonalIdExists(value).pipe(
+                map((personalIdExists) => (personalIdExists ? { personalIdExists: true } : null))
             )),
             first()
         );

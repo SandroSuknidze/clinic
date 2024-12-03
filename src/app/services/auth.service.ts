@@ -14,4 +14,15 @@ export class AuthService {
     return this.http.get<{ emailExists: boolean }>(`${this.apiUrl}/Users/check-email?email=${email}`)
       .pipe(map(response => response.emailExists));
   }
+
+  checkPersonalIdExists(personalId: number): Observable<boolean> {
+    return this.http.get<{ personalIdExists: boolean }>(`${this.apiUrl}/Users/check-personal-id?personalId=${personalId}`)
+      .pipe(map(response => response.personalIdExists));
+  }
+
+  sendEmailConfirmation(email: string): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/Users/send-verification-code`, { email });
+
+    
+  }
 }

@@ -28,6 +28,10 @@ input::-webkit-inner-spin-button {
     margin: 0;
 }
 
+input {
+    font-family: "FiraGO", sans-serif;
+}
+
 button {
     background: none;
     border: none;

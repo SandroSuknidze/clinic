@@ -11,11 +11,11 @@
                 </div>
             </div>
             <div class="name-cont">
-                <label class="name-lab">Email</label>
+                <label class="name-lab">ელ. ფოსტა</label>
                 <div class="email-cont">
                     <input type="email" class="head-input em" placeholder="( მაგ: sandro@example.com )"
                         formControlName="email" />
-                    <img src="/assets/images/mail.svg" alt="mail" class="mail-icon" />
+                    <img src="/assets/images/mail.svg" alt="mail" class="mail-icon" (click)="sendEmailConfirmation()"/>
                 </div>
                 <div class="error"
                     [class.visible]="profileForm.get('email')?.touched && profileForm.get('email')?.errors">
@@ -24,10 +24,10 @@
             </div>
             <div class="name-cont">
                 <label class="name-lab">პირადი ნომერი</label>
-                <input type="number" class="head-input" placeholder="00000000000" formControlName="personalNumber" />
+                <input type="number" class="head-input" placeholder="00000000000" formControlName="personalId" />
                 <div class="error"
-                    [class.visible]="profileForm.get('personalNumber')?.touched && profileForm.get('personalNumber')?.errors">
-                    {{ getErrorMessage('personalNumber') }}
+                    [class.visible]="profileForm.get('personalId')?.touched && profileForm.get('personalId')?.errors">
+                    {{ getErrorMessage('personalId') }}
                 </div>
             </div>
         </div>
@@ -46,8 +46,11 @@
                     <label class="sub-name-lab">ვადა 2 წთ</label>
                 </div>
 
-                <input type="text" class="head-input" placeholder="" />
-                <div class="error">*ბმულის მოქედების ვადა ამოიწურა</div>
+                <input type="text" class="head-input" placeholder="კოდისთვის დააკლიკეთ მეილის იკონკას" formControlName="activationCode"/>
+                <div class="error"
+                    [class.visible]="profileForm.get('activationCode')?.touched && profileForm.get('activationCode')?.errors">
+                    {{ getErrorMessage('activationCode') }}
+                </div>
             </div>
             <div class="name-cont">
                 <label class="name-lab">პაროლი</label>
