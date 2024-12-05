@@ -46,6 +46,7 @@
     color: #0533544d;
     margin-right: 20px;
 }
+
 .name-cont {
     display: flex;
     flex-direction: column;
@@ -95,9 +96,11 @@
 
 .last-row {
     display: flex;
-    margin-top: 13px;
     flex-direction: row-reverse;
     align-items: end;
+    width: 100%;
+    margin-top: 24px;
+    margin-bottom: auto;
 }
 
 .register-btn {
@@ -117,4 +120,77 @@
 
 .email-cont {
     position: relative;
+}
+
+
+.categories-dropdown {
+    border: 1px solid #ccc;
+    background: #fff;
+    max-height: 200px;
+    overflow-y: auto;
+    position: absolute;
+    z-index: 2;
+    width: 100%;
+    top: 75px;
+    border-radius: 10px;
+}
+
+.categories-dropdown div {
+    padding: 8px;
+    cursor: pointer;
+}
+
+.categories-dropdown div:hover {
+    background: #f0f0f0;
+}
+
+.non-input {
+    padding: 15.5px 30px;
+    border-radius: 50px;
+    font-size: 14px;
+    border: 1px solid #ecf2f8;
+    outline: none;
+    font-family: "FiraGO", sans-serif;
+    font-weight: 400;
+    width: 480px;
+    color: #18a4e180;
+    cursor: pointer;
+}
+
+.input-cont {
+    position: relative;
+}
+
+.file-upload-icon {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%, -50%);
+    cursor: pointer;
+    z-index: 2;
+}
+
+::-webkit-scrollbar {
+    width: 10px; /* Width of the scrollbar */
+}
+
+/* Style the track (background) */
+::-webkit-scrollbar-track {
+    background-color: #ECF2F8; /* Background of the scrollbar */
+    border-bottom-right-radius: 10px;
+}
+
+/* Style the scrollbar handle (thumb) */
+::-webkit-scrollbar-thumb {
+    background-color: #8d8d8d; /* Color of the scrollbar thumb */
+    border-radius: 5px; /* Make it round */
+}
+
+/* Change the color when hovering over the scrollbar handle */
+::-webkit-scrollbar-thumb:hover {
+    background-color: #838383; /* Darker color when hovered */
+}
+
+::-webkit-scrollbar-thumb:active {
+    background-color: #595959; /* Darker color when hovered */
 }

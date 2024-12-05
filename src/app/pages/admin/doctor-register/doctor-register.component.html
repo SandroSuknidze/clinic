@@ -1,0 +1,124 @@
+<section class="register-section">
+    <h2 class="register-h2">რეგისტრაცია</h2>
+    <form class="form-cont" [formGroup]="profileForm" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="name-cont">
+                <label class="name-lab">სახელი</label>
+                <input type="text" class="head-input" placeholder="( მაგ: სანდრო )" formControlName="firstName"/>
+                <div class="error"
+                     [class.visible]="profileForm.get('firstName')?.touched && profileForm.get('firstName')?.errors">
+                    {{ getErrorMessage('firstName') }}
+                </div>
+            </div>
+            <div class="name-cont">
+                <label class="name-lab">ელ. ფოსტა</label>
+                <div class="email-cont">
+                    <input type="email" class="head-input em" placeholder="( მაგ: sandro@example.com )"
+                           formControlName="email"/>
+                </div>
+                <div class="error"
+                     [class.visible]="profileForm.get('email')?.touched && profileForm.get('email')?.errors">
+                    {{ getErrorMessage('email') }}
+                </div>
+            </div>
+            <div class="name-cont">
+                <label class="name-lab">პირადი ნომერი</label>
+                <input type="number" class="head-input" placeholder="00000000000" formControlName="personalId"/>
+                <div class="error"
+                     [class.visible]="profileForm.get('personalId')?.touched && profileForm.get('personalId')?.errors">
+                    {{ getErrorMessage('personalId') }}
+                </div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="name-cont">
+                <label class="name-lab">გვარი</label>
+                <input type="text" class="head-input" placeholder="( მაგ: სანდროეული )" formControlName="lastName"/>
+                <div class="error"
+                     [class.visible]="profileForm.get('lastName')?.touched && profileForm.get('lastName')?.errors">
+                    {{ getErrorMessage('lastName') }}
+                </div>
+            </div>
+
+            <div class="name-cont">
+                <label class="name-lab">პაროლი</label>
+                <input type="password" class="head-input" placeholder="( მინიმუმ 8 სიმბოლო )"
+                       formControlName="password"/>
+                <div class="error"
+                     [class.visible]="profileForm.get('password')?.touched && profileForm.get('password')?.errors">
+                    {{ getErrorMessage('password') }}
+                </div>
+            </div>
+            <div class="name-cont">
+                <div class="codes">
+                    <label class="name-lab">კატეგორია</label>
+                </div>
+
+                <input type="text" class="head-input" placeholder="ანესთეზიოლოგი / თერაპევტი ან სხვა..."
+                       formControlName="category"
+                       (focus)="showDropdown = true"
+                       (blur)="hideDropdown()"
+                       (keydown)="filterCategories()"
+                       (click)="filterCategories()"
+                />
+                <div *ngIf="showDropdown && filteredCategories.length > 0" class="categories-dropdown">
+                    <div *ngFor="let category of filteredCategories"
+                         (click)="selectCategory(category)">
+                        {{ category }}
+                    </div>
+                </div>
+                <div class="error"
+                     [class.visible]="profileForm.get('category')?.touched && profileForm.get('category')?.errors">
+                    {{ getErrorMessage('category') }}
+                </div>
+            </div>
+        </div>
+        <div class="row2">
+            <div class="name-cont">
+                <label class="name-lab">ფოტოსურათი</label>
+                <div class="input-cont">
+
+                    <input type="text" class="non-input"
+                           [value]="avatarFileName"
+                           (click)="triggerFileInput('avatar')"
+                           readonly/>
+                    <img ngSrc="./assets/images/image-upload.png" alt="Image Upload"
+                         class="file-upload-icon"
+                         (click)="triggerFileInput('avatar')"
+                         height="18" width="18"/>
+                </div>
+                <input type="file" class="p-hidden"
+                       #avatarFileInput
+                       (change)="onFileSelected($event, 'avatar')" accept="image/jpeg, image/png"/>
+                <div class="error"
+                     [class.visible]="profileForm.get('avatar')?.touched && profileForm.get('avatar')?.errors">
+                    {{ getErrorMessage('avatar') }}
+                </div>
+            </div>
+
+            <div class="name-cont">
+                <label class="name-lab">CV</label>
+                <div class="input-cont">
+                    <input type="text" class="non-input"
+                           [value]="bioFileName"
+                           (click)="triggerFileInput('bio')"
+                           readonly />
+                    <img ngSrc="./assets/images/file-upload.png" alt="File Upload"
+                         class="file-upload-icon"
+                         (click)="triggerFileInput('bio')"
+                         height="20" width="19">
+                </div>
+                <input type="file" class="p-hidden"
+                       #bioFileInput
+                       (change)="onFileSelected($event, 'bio')" accept=".csv" />
+                <div class="error"
+                     [class.visible]="profileForm.get('bio')?.touched && profileForm.get('bio')?.errors">
+                    {{ getErrorMessage('bio') }}
+                </div>
+            </div>
+            <div class="last-row">
+                <button class="register-btn" type="submit" [disabled]="!profileForm.valid">რეგისტრაცია</button>
+            </div>
+        </div>
+    </form>
+</section>

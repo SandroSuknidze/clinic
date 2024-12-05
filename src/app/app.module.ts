@@ -9,7 +9,6 @@ import { ErrorComponent } from './components/error/error.component';
 import { RatingModule } from 'primeng/rating';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ModalComponent } from './components/modal/modal.component';
-import { CategoriesComponent } from './pages/categories/categories.component';
 import { CategoryListItemComponent } from './components/category-list-item/category-list-item.component';
 import { CalendarComponent } from './components/calendar/calendar.component';
 import { ReservationComponent } from './pages/reservation/reservation.component';
@@ -17,7 +16,9 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 import { provideToastr } from 'ngx-toastr';
 import { HTTP_INTERCEPTORS, provideHttpClient } from '@angular/common/http';
 import { AuthInterceptor } from './interceptors/interceptor';
-import { ApiService } from './services/api.service';
+import { DoctorManagementComponent } from './pages/admin/doctor-management/doctor-management.component';
+import { DoctorRegisterComponent } from './pages/admin/doctor-register/doctor-register.component';
+import {NgOptimizedImage} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -27,18 +28,20 @@ import { ApiService } from './services/api.service';
     RegisterComponent,
     ErrorComponent,
     ModalComponent,
-    CategoriesComponent,
     CategoryListItemComponent,
     CalendarComponent,
     ReservationComponent,
+    DoctorManagementComponent,
+    DoctorRegisterComponent,
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    RatingModule,
-    FormsModule,
-    ReactiveFormsModule,
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        RatingModule,
+        FormsModule,
+        ReactiveFormsModule,
+        NgOptimizedImage,
+    ],
   providers: [
     provideAnimations(),
     provideHttpClient(),

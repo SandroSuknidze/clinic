@@ -15,7 +15,8 @@
                 <div class="email-cont">
                     <input type="email" class="head-input em" placeholder="( მაგ: sandro@example.com )"
                         formControlName="email" />
-                    <img src="/assets/images/mail.svg" alt="mail" class="mail-icon" (click)="sendEmailConfirmation()"/>
+                    <img ngSrc="/assets/images/mail.svg" alt="mail" class="mail-icon" (click)="sendEmailConfirmation()"
+                         height="20" width="20"/>
                 </div>
                 <div class="error"
                     [class.visible]="profileForm.get('email')?.touched && profileForm.get('email')?.errors">
