@@ -1,19 +1,37 @@
 <div class="weekly-calendar-container">
     <div class="calendar-header">
-        <span>{{ currentYear }} {{ currentMonthName }}</span>
+        <div class="header-year">{{ currentYear }}</div>
+        <div class="header-month">
+            <button (click)="previousMonth()" class="big-arrow">
+                <img ngSrc="./assets/images/left-arrow-black.svg" alt="left arrow" height="12" width="7" priority>
+            </button>
+            <div class="inner-month">
+                {{ currentMonthName }}
+            </div>
+            <button (click)="nextMonth()" class="big-arrow">
+                <img ngSrc="./assets/images/right-arrow-black.svg" alt="right arrow" height="12" width="7" priority>
+            </button>
+        </div>
     </div>
 
     <div class="calendar-grid">
         <div class="time-slot-header">
-            <button (click)="previousWeek()" class="arrow">&#10094;</button>
-            <button (click)="nextWeek()" class="arrow">&#10095;</button>
+            <button (click)="previousWeek()" class="arrow">
+                <img ngSrc="./assets/images/left-arrow-black.svg" alt="left arrow" height="10" width="6" priority>
+            </button>
+            <button (click)="nextWeek()" class="arrow">
+                <img ngSrc="./assets/images/right-arrow-black.svg" alt="right arrow" height="10" width="6" priority>
+            </button>
         </div>
 
         <div *ngFor="let day of displayedWeek" class="day-header">
-            {{ daysOfWeek[day.getDay()] }} {{ day | date : "d" }}
+            <span class="span-num">{{ day | date : "d" }}</span>
+            <span class="span-week">( {{ daysOfWeek[day.getDay()] }} )</span>
         </div>
         <ng-container *ngFor="let timeSlot of timeSlots">
-            <div class="time-slot">{{ timeSlot }}</div>
+            <div class="time-slot">
+                <div>{{ timeSlot }}</div>
+            </div>
             @for (day of displayedWeek; track $index) {
                 <div class="calendar-cell">
                     @if (getEventsForDayAndTime(day, timeSlot).length > 0) {
@@ -24,7 +42,7 @@
                                     <div> ჩემი ჯავშანი</div>
                                     <div (click)="deleteReservation(event.userId, day, timeSlot)">
                                         <div class="white-circle">
-                                            <img src="/assets/images/close.svg" alt="">
+                                            <img ngSrc="/assets/images/close.svg" alt="close icon" height="8" width="8">
                                         </div>
                                     </div>
                                 </div>
@@ -32,10 +50,10 @@
                                 <div class="activity off"></div>
                             }
                         }
-                    } @else if (daysOfWeek[day.getDay()] === 'Sat' || daysOfWeek[day.getDay()] === 'Sun') {
+                    } @else if (daysOfWeek[day.getDay()] === 'შაბ' || daysOfWeek[day.getDay()] === 'კვი') {
                         <div class="activity off yellow"></div>
                     } @else {
-                        <div class="activity empty" (click)="makeReservation(day, timeSlot)">
+                        <div class="activity empty" (click)="openReservationModal(day, timeSlot)">
                             <span>+&nbsp;</span> დაჯავშნა
                         </div>
                     }
@@ -43,4 +61,7 @@
             }
         </ng-container>
     </div>
+    @if (isModalOpen) {
+        <app-reservation-desc-modal (toggle)="toggleModal()" [description]="description" (reservationMade)="handleReservation($event)"/>
+    }
 </div>

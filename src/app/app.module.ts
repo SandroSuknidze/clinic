@@ -19,21 +19,23 @@ import { AuthInterceptor } from './interceptors/interceptor';
 import { DoctorManagementComponent } from './pages/admin/doctor-management/doctor-management.component';
 import { DoctorRegisterComponent } from './pages/admin/doctor-register/doctor-register.component';
 import {NgOptimizedImage} from "@angular/common";
+import {ReservationDescModalComponent} from "./components/reservation-desc-modal/reservation-desc-modal.component";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HeaderComponent,
-    FooterComponent,
-    RegisterComponent,
-    ErrorComponent,
-    ModalComponent,
-    CategoryListItemComponent,
-    CalendarComponent,
-    ReservationComponent,
-    DoctorManagementComponent,
-    DoctorRegisterComponent,
-  ],
+    declarations: [
+        AppComponent,
+        HeaderComponent,
+        FooterComponent,
+        RegisterComponent,
+        ErrorComponent,
+        ModalComponent,
+        CategoryListItemComponent,
+        CalendarComponent,
+        ReservationComponent,
+        DoctorManagementComponent,
+        DoctorRegisterComponent,
+        ReservationDescModalComponent,
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,

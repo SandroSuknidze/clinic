@@ -1,0 +1,13 @@
+<div class="overlay" (click)="toggleModal()"></div>
+<div class="modal">
+    <h4>გსურთ ვიზიტის დაჯავნშნა ?</h4>
+    <p>შეგიძლიათ მიუთუთოთ თქვენი პრობლემა</p>
+    <textarea name="description" [(ngModel)]="description" placeholder="აღწერა.."></textarea>
+    <div class="btn-cont">
+        <button (click)="handleReservationClick()">
+            დაჯავშნა
+        </button>
+    </div>
+</div>
+
+

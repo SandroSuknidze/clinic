@@ -1,28 +1,45 @@
 .weekly-calendar-container {
     width: 100%;
-    max-width: 1000px;
+    max-width: 842px;
     margin: 0 auto;
 }
 
 .calendar-header {
     display: flex;
-    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 30px;
+}
+
+.header-year {
+    font-size: 18px;
+    color: #053354;
+    font-weight: 500;
+    margin: 0 43px
+}
+
+.header-month {
+    font-size: 18px;
+    color: #18A4E1;
+    font-weight: 500;
+    display: flex;
 }
 
 .calendar-grid {
     display: grid;
-    grid-template-columns: 150px repeat(7, 1fr);
+    grid-template-columns: 135px repeat(7, 1fr);
     border-radius: 10px;
     overflow: hidden;
+    box-shadow: #0533540D 0 0 10px;
 }
 
 .time-slot-header,
 .day-header {
     background-color: #ecf2f8;
-    padding: 10px;
+    padding: 14.5px 10px;
     text-align: center;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
 }
 
 .time-slot {
@@ -33,6 +50,11 @@
     border-right: 1px solid #ecf2f8dd;
     border-left: 1px solid #ecf2f8dd;
     color: #053354;
+    display: flex;
+}
+
+.time-slot > div {
+    margin: auto;
 }
 
 .calendar-cell {
@@ -60,6 +82,7 @@
 
 .activity.reservation {
     color: #3acf99;
+    cursor: default;
 }
 
 .activity.off {
@@ -75,11 +98,49 @@
     background-color: white;
     color: #0533544D;
 }
+
 .empty > span {
     color: #3ACF99;
 }
+
 .arrow {
     cursor: pointer;
+    width: 21px;
+    height: 21px;
+    border-radius: 100%;
+    margin: 0 5px;
+    transition: 300ms;
+}
+
+.arrow:hover {
+    background-color: white;
+    transition: 300ms;
+}
+
+.big-arrow {
+    width: 35px;
+    height: 35px;
+    border-radius: 100%;
+    cursor: pointer;
+    box-shadow: #0533540D 0 0 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.big-arrow > img {
+    align-self: center;
+    height: 12px;
+    width: 7px;
+}
+
+.inner-month {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 10px;
+    border: 1px solid #18A4E14D;
+    border-radius: 50px;
+    padding: 5.5px 33px;
 }
 
 .white-circle {
@@ -92,10 +153,23 @@
     top: 5px;
     right: 5px;
     justify-content: center;
+    cursor: pointer;
 }
 
 .white-circle > img {
     width: 6px;
     height: 6px;
     align-self: center;
+}
+
+.span-num {
+    color: #18A4E1;
+    font-weight: 500;
+    margin-right: 2px;
+}
+
+.span-week {
+    color: #053354;
+    margin-left: 2px;
+
 }
