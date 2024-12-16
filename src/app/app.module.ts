@@ -20,6 +20,7 @@ import { DoctorManagementComponent } from './pages/admin/doctor-management/docto
 import { DoctorRegisterComponent } from './pages/admin/doctor-register/doctor-register.component';
 import {NgOptimizedImage} from "@angular/common";
 import {ReservationDescModalComponent} from "./components/reservation-desc-modal/reservation-desc-modal.component";
+import { DoctorInfoComponent } from './components/doctor-info/doctor-info.component';
 
 @NgModule({
     declarations: [
@@ -35,6 +36,7 @@ import {ReservationDescModalComponent} from "./components/reservation-desc-modal
         DoctorManagementComponent,
         DoctorRegisterComponent,
         ReservationDescModalComponent,
+        DoctorInfoComponent,
     ],
     imports: [
         BrowserModule,

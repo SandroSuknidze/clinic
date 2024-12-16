@@ -1,0 +1,33 @@
+<div class="doctor-cont">
+    <div class="left-col">
+            <img ngSrc="/assets/images/image.jpg" alt="avatar" class="avatar" height="157" width="157" priority/>
+        <h4 class="name">გიორგი ხორავა</h4>
+        <div class="title">ექიმი</div>
+        <div class="category">კარდიოლოგი / არითმოლოგი</div>
+        <form class="rating-cont">
+            <p-rating
+                [(ngModel)]="value"
+                name="first"
+                [stars]="value"
+                [readonly]="true"
+                [cancel]="false"
+            />
+        </form>
+    </div>
+    <div class="right-col">
+        <div>
+            <div class="pencil-icon-container">
+            </div>
+            <div class="pencil-icon-container">
+            </div>
+        </div>
+        <div></div>
+        <div></div>
+    </div>
+
+    <div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
+</div>

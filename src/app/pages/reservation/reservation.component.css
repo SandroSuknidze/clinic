@@ -1,0 +1,5 @@
+.reservation {
+    display: flex;
+    padding: 60px 150px;
+    gap: 41px;
+}
