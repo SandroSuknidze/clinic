@@ -6,37 +6,69 @@
             <line x1="3" y1="21" x2="21" y2="3" stroke="black" stroke-width="2"></line>
         </svg>
     </div>
-    <h2 class="authorization-text">ავტორიზაცია</h2>
 
-    <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
-        <div>
-            <input
-                type="email"
-                class="general-input"
-                placeholder="ელ. ფოსტა"
-                formControlName="email"
-            />
-            <div class="error"
-                 [class.visible]="loginForm.get('email')?.touched && loginForm.get('email')?.errors">
-                {{ getErrorMessage('email') }}
-            </div>
+    @if (!loginView) {
+    <div (click)="toggleView()" class="back-button">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+            <path d="M15 18l-6-6 6-6" stroke="black" stroke-width="2" fill="none"></path>
+        </svg>
+    </div>
+    }
 
-            <input
-                type="password"
-                class="general-input"
-                placeholder="პაროლი"
-                formControlName="password"
-            />
-            <div class="error"
-                 [class.visible]="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
-                {{ getErrorMessage('password') }}
+
+    @if (loginView) {
+        <h2 class="authorization-text">ავტორიზაცია</h2>
+
+        <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+            <div>
+                <input
+                    type="email"
+                    class="general-input"
+                    placeholder="ელ. ფოსტა"
+                    formControlName="email"
+                />
+                <div class="error"
+                     [class.visible]="loginForm.get('email')?.touched && loginForm.get('email')?.errors">
+                    {{ getErrorMessage('email') }}
+                </div>
+
+                <input
+                    type="password"
+                    class="general-input"
+                    placeholder="პაროლი"
+                    formControlName="password"
+                />
+                <div class="error"
+                     [class.visible]="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+                    {{ getErrorMessage('password') }}
+                </div>
             </div>
-        </div>
-        <div class="reset-password">
-            <a href="#" (click)="onResetPassword()">პაროლის აღდგენა</a>
-        </div>
-        <button type="submit" class="auth-button" [disabled]="loginForm.invalid">
-            შესვლა
-        </button>
-    </form>
+            <div class="reset-password">
+                <p (click)="toggleView()">პაროლის აღდგენა</p>
+            </div>
+            <button type="submit" class="auth-button" [disabled]="loginForm.invalid">
+                შესვლა
+            </button>
+        </form>
+    } @else {
+        <h2 class="authorization-text">პაროლის აღდგენა</h2>
+
+        <form class="auth-form" [formGroup]="forgotForm" (ngSubmit)="onForgotPassword()">
+            <div>
+                <input
+                    type="email"
+                    class="general-input"
+                    placeholder="ელ. ფოსტა"
+                    formControlName="email"
+                />
+                <div class="error"
+                     [class.visible]="forgotForm.get('email')?.touched && forgotForm.get('email')?.errors">
+                    {{ getErrorMessage('email') }}
+                </div>
+            </div>
+            <button type="submit" class="auth-button" [disabled]="forgotForm.invalid || loadingForgot">
+                გაგზავნა
+            </button>
+        </form>
+    }
 </div>

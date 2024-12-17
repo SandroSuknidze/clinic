@@ -13,17 +13,26 @@ export class ModalComponent {
     private toastr = inject(ToastrService);
     private apiService = inject(ApiService);
 
+    email: string = '';
+    password: string = '';
+    private emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
+
+    private loading = false;
+    protected loadingForgot = false;
+
+    public loginView = true;
+
     @Output() toggle = new EventEmitter<void>();
 
     toggleModal() {
         this.toggle.emit();
     }
 
-    email: string = '';
-    password: string = '';
-    private emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
+    toggleView() {
+        this.loginView = !this.loginView;
+    }
 
-    private loading = false;
+
 
     loginForm = this.formBuilder.group({
         email: ['',
@@ -39,6 +48,21 @@ export class ModalComponent {
 
         ],
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]],
+    });
+
+    forgotForm = this.formBuilder.group({
+        email: ['',
+            {
+                validators: [
+                    Validators.required,
+                    Validators.email,
+                    Validators.maxLength(255),
+                    Validators.pattern(this.emailPattern)
+                ],
+                updateOn: 'change'
+            }
+
+        ],
     });
 
     getErrorMessage(controlName: string): string {
@@ -89,7 +113,33 @@ export class ModalComponent {
         }
     }
 
-    onResetPassword(): void {
-        console.log('Password reset initiated for:', this.email);
+    onForgotPassword() {
+        if (this.loadingForgot) {
+            return;
+        }
+        if (this.forgotForm.valid && !this.loadingForgot) {
+            this.loadingForgot = true;
+
+
+            console.log(this.forgotForm.value);
+
+            // this.apiService.post('Users/forgot-password', this.forgotForm.value).subscribe({
+            //     next: (response) => {
+            //         this.toastr.success('შეტყობინება წარმატებით გამოიგზავნა თქვენს მითითებულ მეილზე', 'წარმატება!',);
+            //         console.log('forgot:', response);
+            //         this.forgotForm.reset();
+            //     },
+            //     error: (error) => {
+            //         this.toastr.error(error.error.errorMessage || 'არასწორი ფორმა', 'შეცდომა');
+            //     },
+            // })
+            setTimeout(() => {
+                this.loadingForgot = false;
+            }, 20000)
+        } else if (!this.forgotForm.valid) {
+            this.toastr.error('არასწორი ფორმა', 'შეცდომა');
+        }
+
     }
+
 }
