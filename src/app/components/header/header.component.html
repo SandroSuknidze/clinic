@@ -5,7 +5,7 @@
             <h2 class="nav-left-h2">კლინიკა</h2>
         </div>
         <nav>
-            <ul>
+            <ul class="nav-cont">
                 <li routerLink="/">ექიმები</li>
                 <li>კლინიკები</li>
                 <li>ანოტაციები</li>
@@ -60,12 +60,13 @@
                 </div>
             </div>
         </div>
-        <div class="right-cont">
+        <form [formGroup]="searchForm" class="right-cont">
             <div>
                 <input
                     type="text"
                     class="head-input"
                     placeholder="მოძებნე ექიმის სახელით"
+                    formControlName="name"
                 />
             </div>
             <div>
@@ -73,6 +74,7 @@
                     type="text"
                     class="head-input"
                     placeholder="მოძებნე სპეციალობით"
+                    formControlName="category"
                 />
             </div>
             <div class="black-circle">
@@ -82,9 +84,20 @@
                     class="search-svg"
                     height="24" width="24"/>
             </div>
-        </div>
+            @if (filteredItems.length > 0) {
+                <div class="results-cont">
+                    <ul class="results">
+                        @for (item of filteredItems; track $index) {
+                            <li>
+                                {{ item.name }} - {{ item.category }}
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </form>
     </div>
 </header>
-@if(isModalOpen) {
-  <app-modal (toggle)="toggleModal()"></app-modal>
+@if (isModalOpen) {
+    <app-modal (toggle)="toggleModal()"></app-modal>
 }
