@@ -1,16 +1,42 @@
 <div class="modal-overlay" (click)="toggleModal()"></div>
 <div class="modal">
-    <div (click)="toggleModal()" class="close-button">X</div>
+    <div (click)="toggleModal()" class="close-button">
+        <svg width="16" height="16" viewBox="0 0 24 24">
+            <line x1="3" y1="3" x2="21" y2="21" stroke="black" stroke-width="2"></line>
+            <line x1="3" y1="21" x2="21" y2="3" stroke="black" stroke-width="2"></line>
+        </svg>
+    </div>
     <h2 class="authorization-text">ავტორიზაცია</h2>
 
-    <form action="" class="auth-form">
-        <input
-            type="text"
-            class="general-input"
-            placeholder="ელ. ფოსტა/ ტელეფონის ნომერი"
-        />
-        <input type="password" class="general-input" placeholder="პაროლი" />
-        <p class="reset-password">პაროლის აღდგენა</p>
-        <button class="auth-button">შესვლა</button>
+    <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onLogin()">
+        <div>
+            <input
+                type="email"
+                class="general-input"
+                placeholder="ელ. ფოსტა"
+                formControlName="email"
+            />
+            <div class="error"
+                 [class.visible]="loginForm.get('email')?.touched && loginForm.get('email')?.errors">
+                {{ getErrorMessage('email') }}
+            </div>
+
+            <input
+                type="password"
+                class="general-input"
+                placeholder="პაროლი"
+                formControlName="password"
+            />
+            <div class="error"
+                 [class.visible]="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
+                {{ getErrorMessage('password') }}
+            </div>
+        </div>
+        <div class="reset-password">
+            <a href="#" (click)="onResetPassword()">პაროლის აღდგენა</a>
+        </div>
+        <button type="submit" class="auth-button" [disabled]="loginForm.invalid">
+            შესვლა
+        </button>
     </form>
 </div>
