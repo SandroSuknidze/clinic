@@ -5,6 +5,7 @@ import {ErrorComponent} from './components/error/error.component';
 import {ReservationComponent} from './pages/reservation/reservation.component';
 import {DoctorManagementComponent} from "./pages/admin/doctor-management/doctor-management.component";
 import {DoctorRegisterComponent} from "./pages/admin/doctor-register/doctor-register.component";
+import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
 
 const routes: Routes = [
     {
@@ -24,6 +25,10 @@ const routes: Routes = [
     {
         path: 'admin/doctor-management',
         component: DoctorManagementComponent,
+    },
+    {
+        path: 'reset-password',
+        component: ResetPasswordComponent,
     },
     {
         path: 'admin/doctor-register',
