@@ -40,10 +40,15 @@
     color: #0533544D;
     font-size: 14px;
     margin-top: 1px;
+    white-space: nowrap;
 }
 
 .rating-cont {
     margin-top: 10px;
+}
+
+/deep/ .p-rating-icon {
+    cursor: default !important;
 }
 
 .pencil-icon-container {
@@ -65,4 +70,37 @@
 .right-col {
     width: 100%;
     margin-left: 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+}
+
+.right-top {
+    display: flex;
+    justify-content: space-between;
+}
+
+.right-top-child {
+    display: flex;
+}
+
+.field-cont {
+    display: flex;
+    flex-direction: column;
+    margin-left: 14px;
+    margin-top: 9px;
+}
+
+.person-id-field {
+    color: #053354;
+    font-size: 18px;
+}
+
+.person-id-val {
+    color: #0533544D;
+    margin-top: 5px;
+}
+
+.center {
+    text-align: center;
 }
