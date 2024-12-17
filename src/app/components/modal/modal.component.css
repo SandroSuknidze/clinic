@@ -16,9 +16,8 @@
     transform: translate(-50%, -50%);
     background-color: white;
     z-index: 11;
-    padding: 20px;
     border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
     padding: 66px 114px 89px;
 }
 

@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ToastrService} from 'ngx-toastr';
+import {PermissionService} from "../../services/permission.service";
 
 @Component({
     selector: 'app-calendar',
@@ -53,7 +54,7 @@ export class CalendarComponent implements OnInit {
 
     isModalOpen: boolean = false;
 
-    constructor(private toastr: ToastrService) { }
+    constructor(private toastr: ToastrService, public permissionService: PermissionService) { }
 
 
     console() {
