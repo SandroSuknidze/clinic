@@ -47,7 +47,8 @@
                     <label class="sub-name-lab">ვადა 2 წთ</label>
                 </div>
 
-                <input type="text" class="head-input" placeholder="კოდისთვის დააკლიკეთ მეილის იკონკას" formControlName="activationCode"/>
+                <input type="text" class="head-input" placeholder="კოდისთვის დააკლიკეთ მეილის იკონკას"
+                       formControlName="activationCode" autocomplete="one-time-code"/>
                 <div class="error"
                     [class.visible]="profileForm.get('activationCode')?.touched && profileForm.get('activationCode')?.errors">
                     {{ getErrorMessage('activationCode') }}
@@ -56,7 +57,7 @@
             <div class="name-cont">
                 <label class="name-lab">პაროლი</label>
                 <input type="password" class="head-input" placeholder="( მინიმუმ 8 სიმბოლო )"
-                    formControlName="password" />
+                    formControlName="password" autocomplete="current-password"/>
                 <div class="error"
                     [class.visible]="profileForm.get('password')?.touched && profileForm.get('password')?.errors">
                     {{ getErrorMessage('password') }}

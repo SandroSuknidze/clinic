@@ -33,7 +33,8 @@
         <div class="row2">
             <div class="name-cont">
                 <label class="name-lab">გვარი</label>
-                <input type="text" class="head-input" placeholder="( მაგ: სანდროეული )" formControlName="lastName"/>
+                <input type="text" class="head-input" placeholder="( მაგ: სანდროეული )"
+                       formControlName="lastName" autocomplete="family-name"/>
                 <div class="error"
                      [class.visible]="profileForm.get('lastName')?.touched && profileForm.get('lastName')?.errors">
                     {{ getErrorMessage('lastName') }}
@@ -43,7 +44,7 @@
             <div class="name-cont">
                 <label class="name-lab">პაროლი</label>
                 <input type="password" class="head-input" placeholder="( მინიმუმ 8 სიმბოლო )"
-                       formControlName="password"/>
+                       formControlName="password" autocomplete="current-password"/>
                 <div class="error"
                      [class.visible]="profileForm.get('password')?.touched && profileForm.get('password')?.errors">
                     {{ getErrorMessage('password') }}

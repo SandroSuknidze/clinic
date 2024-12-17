@@ -26,6 +26,7 @@
                     class="general-input"
                     placeholder="ელ. ფოსტა"
                     formControlName="email"
+                    autocomplete="email"
                 />
                 <div class="error"
                      [class.visible]="loginForm.get('email')?.touched && loginForm.get('email')?.errors">
@@ -37,6 +38,7 @@
                     class="general-input"
                     placeholder="პაროლი"
                     formControlName="password"
+                    autocomplete="current-password"
                 />
                 <div class="error"
                      [class.visible]="loginForm.get('password')?.touched && loginForm.get('password')?.errors">
