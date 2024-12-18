@@ -5,6 +5,7 @@ import { CookieService } from 'ngx-cookie-service';
 import { jwtDecode } from 'jwt-decode';
 import { JwtPayload } from '../models/jwt-payload.model';
 import { ToastrService } from 'ngx-toastr';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +21,12 @@ export class AuthService {
   role: string | null = null;
 
 
-  constructor(private cookieService: CookieService, private http: HttpClient, private toastr: ToastrService) {
+  constructor(
+    private cookieService: CookieService,
+    private http: HttpClient,
+    private toastr: ToastrService,
+    private router: Router
+  ) {
     this.initializeAuthState();
   }
 
@@ -72,6 +78,15 @@ export class AuthService {
     return !!this.cookieService.get('token');
   }
 
+  getUserRole(): string | null {
+    const token = this.cookieService.get('token');
+    if (token) {
+      const decoded: JwtPayload = jwtDecode(token);
+      return decoded.Role;
+    }
+    return null;
+  }
+
   handleRegistrationResponse(response: any): void {
     const token = response.accessToken;
     if (token) {
@@ -80,6 +95,7 @@ export class AuthService {
   }
 
   logout() {
+    this.router.navigate(['/']);
     this.cookieService.delete('token', '/');
     this.firstname = null;
     this.lastname = null;

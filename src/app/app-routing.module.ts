@@ -6,6 +6,8 @@ import {ReservationComponent} from './pages/reservation/reservation.component';
 import {DoctorManagementComponent} from "./pages/admin/doctor-management/doctor-management.component";
 import {DoctorRegisterComponent} from "./pages/admin/doctor-register/doctor-register.component";
 import {ResetPasswordComponent} from "./pages/reset-password/reset-password.component";
+import { authGuard } from './guards/auth.guard';
+import { roleGuard } from './guards/role.guard';
 
 const routes: Routes = [
     {
@@ -17,22 +19,28 @@ const routes: Routes = [
     {
         path: 'register',
         component: RegisterComponent,
+        canActivate: [authGuard]
     },
     {
         path: 'reservation',
         component: ReservationComponent,
     },
     {
-        path: 'admin/doctor-management',
-        component: DoctorManagementComponent,
-    },
-    {
         path: 'reset-password',
         component: ResetPasswordComponent,
+        canActivate: [authGuard]
+    },
+    {
+        path: 'admin/doctor-management',
+        component: DoctorManagementComponent,
+        canActivate: [roleGuard],
+        data: { role: 'Admin' }
     },
     {
         path: 'admin/doctor-register',
         component: DoctorRegisterComponent,
+        canActivate: [roleGuard],
+        data: { role: 'Admin' }
     },
     {
         path: '**',

@@ -107,7 +107,7 @@ export class ModalComponent {
                     this.toggleModal();
                 },
                 error: (error) => {
-                    this.toastr.error(error.error.errorMessage || 'არასწორი ფორმა', 'შეცდომა');
+                    this.toastr.error(error.error.errorMessage || 'არასწორი მეილი ან პაროლი', 'შეცდომა');
                     this.loading = false;
                 },
                 complete: () => {
@@ -115,7 +115,7 @@ export class ModalComponent {
                 }
             })
         } else if (!this.loginForm.valid) {
-            this.toastr.error('არასწორი ფორმა', 'Form Invalid');
+            this.toastr.error('დაფიქსირდა შეცდომა', 'შეცდომა');
             this.loading = false;
         }
     }
