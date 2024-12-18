@@ -16,9 +16,14 @@
             </ul>
         </nav>
         <div class="nav-auth">
-            <div class="auth" (click)="toggleModal()">ავტორიზაცია</div>
-            <div>/</div>
-            <div routerLink="/register" class="register">რეგისტრაცია</div>
+            @if (authService.isAuthenticated()) {
+                {{authService.firstname}}{{ authService.lastname}}
+                <div (click)="authService.logout()">გ</div>
+            } @else {
+                <div class="auth" (click)="toggleModal()">ავტორიზაცია</div>
+                <div>/</div>
+                <div routerLink="/register" class="register">რეგისტრაცია</div>
+            }
         </div>
         <div class="nav-lang">ENG</div>
     </div>
@@ -84,7 +89,7 @@
                     class="search-svg"
                     height="24" width="24"/>
             </div>
-            @if (filteredItems.length > 0) {
+            @if (filteredItems.length < 0) {
                 <div class="results-cont">
                     <ul class="results">
                         @for (item of filteredItems; track $index) {

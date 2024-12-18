@@ -6,6 +6,7 @@ import { ApiService } from '../../services/api.service';
 import { ToastrService } from 'ngx-toastr';
 import { UserRole } from '../../enums/user-role.enum';
 import { personalIdExistsValidator } from '../../validators/personal-id.validator';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -15,6 +16,7 @@ import { personalIdExistsValidator } from '../../validators/personal-id.validato
 export class RegisterComponent {
   private formBuilder = inject(FormBuilder);
   private authService = inject(AuthService);
+  private router = inject(Router);
 
 
   private emailPattern = '^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$';
@@ -98,9 +100,12 @@ export class RegisterComponent {
 
       this.apiService.post('Users/register', this.profileForm.value).subscribe({
         next: (response) => {
-          this.toastr.success('რეგისტრაცია წარმატებით დასრულდა!', 'წარმატება!',);
+          this.authService.handleRegistrationResponse(response);
+
+          this.toastr.success('რეგისტრაცია წარმატებით დასრულდა!', 'წარმატება!');
           console.log('User registered:', response);
           this.profileForm.reset();
+          this.router.navigate(['/']);
         },
         error: (error) => {
           if (error.error.errorCode === 'INVALID_CODE') {

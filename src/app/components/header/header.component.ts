@@ -1,5 +1,6 @@
 import {Component, inject} from '@angular/core';
 import {FormBuilder} from "@angular/forms";
+import { AuthService } from '../../services/auth.service';
 
 @Component({
     selector: 'app-header',
@@ -8,6 +9,7 @@ import {FormBuilder} from "@angular/forms";
 })
 export class HeaderComponent {
     private formBuilder = inject(FormBuilder);
+    protected authService = inject(AuthService);
 
     isModalOpen: boolean = false;
 

@@ -2,6 +2,8 @@ import {Component, EventEmitter, Output, inject} from '@angular/core';
 import {FormBuilder, Validators} from '@angular/forms';
 import {ToastrService} from "ngx-toastr";
 import {ApiService} from "../../services/api.service";
+import { AuthService } from '../../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-modal',
@@ -12,6 +14,8 @@ export class ModalComponent {
     private formBuilder = inject(FormBuilder);
     private toastr = inject(ToastrService);
     private apiService = inject(ApiService);
+    private authService = inject(AuthService);
+    private router = inject(Router);
 
     email: string = '';
     password: string = '';
@@ -95,9 +99,12 @@ export class ModalComponent {
 
             this.apiService.post('Users/login', this.loginForm.value).subscribe({
                 next: (response) => {
-                    this.toastr.success('ავტორიზაცია წარმატებით დასრულდა!', 'წარმატება!',);
+                    this.authService.handleRegistrationResponse(response);
+                    this.toastr.success('ავტორიზაცია წარმატებით დასრულდა!', 'წარმატება!');
                     console.log('User logined:', response);
                     this.loginForm.reset();
+                    this.router.navigate(['/']);
+                    this.toggleModal();
                 },
                 error: (error) => {
                     this.toastr.error(error.error.errorMessage || 'არასწორი ფორმა', 'შეცდომა');
