@@ -73,7 +73,6 @@ export class AuthService {
     }
   }
 
-  // Check if the user is authenticated
   isAuthenticated(): boolean {
     return !!this.cookieService.get('token');
   }

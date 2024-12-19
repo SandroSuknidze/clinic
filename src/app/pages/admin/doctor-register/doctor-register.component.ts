@@ -1,4 +1,4 @@
-import {Component, ElementRef, inject, ViewChild} from '@angular/core';
+import {Component, ElementRef, inject, OnInit, ViewChild} from '@angular/core';
 import {FormBuilder, Validators} from "@angular/forms";
 import {AuthService} from "../../../services/auth.service";
 import {ApiService} from "../../../services/api.service";
@@ -13,7 +13,7 @@ import {fileTypeValidator} from "../../../validators/file-type.validator";
     templateUrl: './doctor-register.component.html',
     styleUrl: './doctor-register.component.css'
 })
-export class DoctorRegisterComponent {
+export class DoctorRegisterComponent implements OnInit{
     private formBuilder = inject(FormBuilder);
     private authService = inject(AuthService);
     private apiService = inject(ApiService);
@@ -27,11 +27,15 @@ export class DoctorRegisterComponent {
     private loading = false;
 
     showDropdown: boolean = false;
-    categories: string[] = ['ანესთეზიოლოგი', 'თერაპევტი', 'პედიატრი', 'ნევროლოგი', 'ნევრაზია', 'სტომატოლოგი']; // Static categories
+    categories: string[] = [];
     filteredCategories: string[] = [];
 
     avatarFileName: string = '';
     bioFileName: string = '';
+
+    ngOnInit(): void {
+        this.fetchCategories();
+    }
 
 
     profileForm = this.formBuilder.group({
@@ -39,25 +43,25 @@ export class DoctorRegisterComponent {
         lastName: ['', [Validators.required, Validators.maxLength(255)]],
         email: ['',
             {
-                // validators: [
-                //     Validators.required,
-                //     Validators.email,
-                //     Validators.maxLength(255),
-                //     Validators.pattern(this.emailPattern)
-                // ],
-                // asyncValidators: [emailExistsValidator(this.authService)],
-                // updateOn: 'change'
+                validators: [
+                    Validators.required,
+                    Validators.email,
+                    Validators.maxLength(255),
+                    Validators.pattern(this.emailPattern)
+                ],
+                asyncValidators: [emailExistsValidator(this.authService)],
+                updateOn: 'change'
             }
         ], personalId: [
             '',
-            // {
-            //     validators: [Validators.required, Validators.min(10000000000), Validators.max(99999999999)],
-            //     asyncValidators: [personalIdExistsValidator(this.authService)],
-            //     updateOn: 'change'
-            // }
+            {
+                validators: [Validators.required, Validators.min(10000000000), Validators.max(99999999999)],
+                asyncValidators: [personalIdExistsValidator(this.authService)],
+                updateOn: 'change'
+            }
         ],
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]],
-        category: ['', [Validators.required, Validators.maxLength(255)]],
+        category: ['4', [Validators.required, Validators.maxLength(255)]],
         avatar: [null as File | null, [Validators.required, fileTypeValidator(['image/jpeg', 'image/png'])]],
         bio: [null as File | null, [Validators.required, fileTypeValidator(['text/csv'])]],
         role: [UserRole.Doctor]
@@ -121,6 +125,7 @@ export class DoctorRegisterComponent {
         this.filterCategories();
     }
 
+
     filterCategories() {
         setTimeout(() => {
             const query = this.profileForm.controls['category'].value?.toLowerCase();
@@ -180,17 +185,16 @@ export class DoctorRegisterComponent {
     }
 
 
-    // fetchCategories() {
-    //     this.apiService.get('Categories').subscribe({
-    //         next: (data:any) => {
-    //             this.categories = data.map((category: { name: any; }) => category.name);
-    //             console.log('Categories:', data);
-    //         },
-    //         error: (error) => {
-    //             console.error('Error fetching categories:', error);
-    //         }
-    //     });
-    // }
+    fetchCategories() {
+        this.apiService.get('Categories').subscribe({
+            next: (data:any) => {
+                this.categories = data.map((category: { name: any; }) => category.name);
+            },
+            error: (error) => {
+                console.error('Error fetching categories:', error);
+            }
+        });
+    }
 
     onSubmit() {
         if (this.profileForm.valid && !this.loading) {
@@ -198,7 +202,7 @@ export class DoctorRegisterComponent {
 
             console.log(this.profileForm.value);
 
-            this.apiService.post('Users/register', this.profileForm.value).subscribe({
+            this.apiService.post('Doctors/register', this.profileForm.value).subscribe({
                 next: (response) => {
                     this.toastr.success('რეგისტრაცია წარმატებით დასრულდა!', 'წარმატება!',);
                     console.log('User registered:', response);
