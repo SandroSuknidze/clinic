@@ -1,6 +1,10 @@
-import {Component, inject} from '@angular/core';
-import {FormBuilder} from "@angular/forms";
+import { Component, inject } from '@angular/core';
+import { FormBuilder } from "@angular/forms";
 import { AuthService } from '../../services/auth.service';
+import { DoctorService } from '../../services/doctor.service';
+import { debounceTime, distinctUntilChanged } from 'rxjs/operators';
+import { Doctor } from '../../models/doctor';
+
 
 @Component({
     selector: 'app-header',
@@ -12,61 +16,53 @@ export class HeaderComponent {
     protected authService = inject(AuthService);
 
     isModalOpen: boolean = false;
+    showResults: boolean = false;
 
     searchForm = this.formBuilder.group({
         name: [''],
         category: [''],
     });
 
-    items: any[] = [
-        { id: 1, name: 'Apple', category: 'Fruit' },
-        { id: 2, name: 'Carrot', category: 'Vegetable' },
-        { id: 3, name: 'Banana', category: 'Fruit' },
-        { id: 4, name: 'Tomato', category: 'Vegetable' },
-        { id: 5, name: 'Grapes', category: 'Fruit' },
-        { id: 6, name: 'Potato', category: 'Vegetable' },
-    ];
+    doctors: Doctor[] = [];
 
-    filteredItems: any[] = [];
-
-    constructor() {
-        // Initially show all items
-        this.filteredItems = this.items;
-
-        // Listen to changes in form and filter items dynamically
-        this.searchForm.valueChanges.subscribe(() => this.filterItems());
+    constructor(private doctorService: DoctorService) {
+        this.searchForm.valueChanges
+            .pipe(
+                debounceTime(300),
+                distinctUntilChanged()
+            )
+            .subscribe(() => this.searchDoctors());
     }
-
-    filterItems(): void {
-        // @ts-ignore
+    searchDoctors(): void {
         const { name, category } = this.searchForm.value;
 
-        // Apply filters
-        this.filteredItems = this.items.filter((item) => {
-            const matchesName = name
-                ? item.name.toLowerCase().includes(name.toLowerCase())
-                : true;
+        if (!name && !category) {
+            this.doctors = [];
+            return;
+        }
 
-            const matchesCategory = category
-                ? item.category.toLowerCase().includes(category.toLowerCase())
-                : true;
-
-            // Combine both conditions
-            return matchesName && matchesCategory;
+        this.doctorService.getDoctors(name, category).subscribe((doctors) => {
+            this.doctors = doctors;
+            this.showResults = true;
         });
     }
 
+    handleBlur(): void {
+        setTimeout(() => {
+            this.showResults = false;
+        }, 200);
+    }
 
-
+    handleFocus(): void {
+        setTimeout(() => {
+            if (this.doctors.length > 0) {
+                this.showResults = true;
+            }
+        }, 200);
+    }
 
     toggleModal() {
         this.isModalOpen = !this.isModalOpen;
     }
-
-
-
-
-
-
 
 }

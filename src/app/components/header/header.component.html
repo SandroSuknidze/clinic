@@ -68,19 +68,23 @@
         <form [formGroup]="searchForm" class="right-cont">
             <div>
                 <input
-                    type="text"
-                    class="head-input"
-                    placeholder="მოძებნე ექიმის სახელით"
-                    formControlName="name"
-                />
+                type="text"
+                class="head-input"
+                placeholder="მოძებნე ექიმის სახელით"
+                formControlName="name"
+                (focus)="handleFocus()"
+                (blur)="handleBlur()"
+            />
             </div>
             <div>
                 <input
-                    type="text"
-                    class="head-input"
-                    placeholder="მოძებნე სპეციალობით"
-                    formControlName="category"
-                />
+                type="text"
+                class="head-input"
+                placeholder="მოძებნე სპეციალობით"
+                formControlName="category"
+                (focus)="handleFocus()"
+                (blur)="handleBlur()"
+            />
             </div>
             <div class="black-circle">
                 <img
@@ -89,12 +93,13 @@
                     class="search-svg"
                     height="24" width="24"/>
             </div>
-            @if (filteredItems.length < 0) {
+            @if (showResults && doctors.length > 0) {
                 <div class="results-cont">
                     <ul class="results">
-                        @for (item of filteredItems; track $index) {
+                        @for (item of doctors; track $index) {
                             <li>
-                                {{ item.name }} - {{ item.category }}
+                                <a href="youtube.com">                                {{ item.firstName }} - {{ item.lastName }}
+                                </a>
                             </li>
                         }
                     </ul>

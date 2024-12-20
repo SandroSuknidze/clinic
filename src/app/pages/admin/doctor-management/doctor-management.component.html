@@ -1,6 +1,10 @@
 <section>
     <div class="categories-section">
         <h2 class="h2-header">კატეგორიები</h2>
+
+        @if (doctors.length === 0) {
+        <div>ექიმები არ არიან</div>
+        } @else {
         <div class="categories-cont">
             <div class="head">
                 <div>სახელი</div>
@@ -11,10 +15,11 @@
             </div>
             <div class="category-list-cont">
                 @for (doctor of doctors; track doctor.id) {
-                    <app-category-list-item [doctor]="doctor" [index]="doctor.id" class="category-list"/>
+                <app-category-list-item [doctor]="doctor" [index]="doctor.id" class="category-list" />
                 }
             </div>
-
         </div>
+        }
+
     </div>
 </section>

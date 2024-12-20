@@ -19,7 +19,7 @@ export class DoctorManagementComponent {
 
   getDoctors(): void {
     this.loading = true;
-    this.doctorService.fetchDoctors().subscribe(
+    this.doctorService.getDoctors().subscribe(
       (data) => {
         this.doctors = data;
         this.loading = false;
