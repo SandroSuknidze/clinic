@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { Doctor } from '../../models/doctor';
 
 @Component({
   selector: 'app-category-list-item',
@@ -6,5 +7,9 @@ import { Component } from '@angular/core';
   styleUrl: './category-list-item.component.css'
 })
 export class CategoryListItemComponent {
-value: number = 5;
+  value: number = 5;
+
+  @Input() doctor!: Doctor;
+  @Input() index!: number;
+
 }

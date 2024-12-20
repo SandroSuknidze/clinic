@@ -7,6 +7,7 @@ import {emailExistsValidator} from "../../../validators/email.validator";
 import {personalIdExistsValidator} from "../../../validators/personal-id.validator";
 import {UserRole} from "../../../enums/user-role.enum";
 import {fileTypeValidator} from "../../../validators/file-type.validator";
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'app-doctor-register',
@@ -18,6 +19,7 @@ export class DoctorRegisterComponent implements OnInit{
     private authService = inject(AuthService);
     private apiService = inject(ApiService);
     private toastr = inject(ToastrService);
+    private router = inject(Router);
 
     @ViewChild('avatarFileInput') avatarFileInput!: ElementRef<HTMLInputElement>;
     @ViewChild('bioFileInput') bioFileInput!: ElementRef<HTMLInputElement>;
@@ -61,7 +63,7 @@ export class DoctorRegisterComponent implements OnInit{
             }
         ],
         password: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(255)]],
-        category: ['4', [Validators.required, Validators.maxLength(255)]],
+        category: ['', [Validators.required, Validators.maxLength(255)]],
         avatar: [null as File | null, [Validators.required, fileTypeValidator(['image/jpeg', 'image/png'])]],
         bio: [null as File | null, [Validators.required, fileTypeValidator(['text/csv'])]],
         role: [UserRole.Doctor]
@@ -202,11 +204,37 @@ export class DoctorRegisterComponent implements OnInit{
 
             console.log(this.profileForm.value);
 
-            this.apiService.post('Doctors/register', this.profileForm.value).subscribe({
+            const formData = new FormData();
+            const formValues = this.profileForm.value;
+
+            formData.append('firstName', formValues.firstName || '');
+            formData.append('lastName', formValues.lastName || '');
+            formData.append('email', formValues.email || '');
+            if (formValues.personalId != null) {
+                formData.append('personalId', formValues.personalId.toString());
+            }
+            if (formValues.category != null) {
+                formData.append('categoryId', formValues.category.toString());
+            }
+
+            formData.append('password', formValues.password || '');
+            formData.append('role', formValues.role?.toString() || '');
+
+            if (formValues.avatar) {
+                formData.append('avatar', formValues.avatar);
+            }
+            if (formValues.bio) {
+                formData.append('bio', formValues.bio);
+            }
+
+            this.apiService.post('Doctors/register', formData).subscribe({
                 next: (response) => {
-                    this.toastr.success('რეგისტრაცია წარმატებით დასრულდა!', 'წარმატება!',);
-                    console.log('User registered:', response);
+                    this.toastr.success('რეგისტრაცია წარმატებით დასრულდა!', 'წარმატება!');
+                    this.router.navigate(['/admin/doctor-management']);
+                    console.log('Doctor registered:', response);
                     this.profileForm.reset();
+                    this.avatarFileName = '';
+                    this.bioFileName = '';
                 },
                 error: (error) => {
                     this.toastr.error(error.error.errorMessage || 'არასწორი ფორმა', 'შეცდომა');

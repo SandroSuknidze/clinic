@@ -1,12 +1,13 @@
-<div class="category-list-item">გიორგი ხორავა</div>
-<div class="category-list-item item-category">ანდროლოგი</div>
+<div class="category-list-item">{{doctor.firstName}} {{doctor.lastName}}</div>
+<div class="category-list-item item-category">{{doctor.categoryName}}</div>
 <div class="category-list-item item-photo">
-    <img src="/assets/images/avatar-list.jpg" alt="" class="avatar-list">
+    <!-- src="/assets/images/avatar-list.jpg"  -->
+    <img [src]="'data:image/jpeg;base64,' + doctor.avatar" alt="" class="avatar-list">
 </div>
 <div class="category-list-item item-rating">
     <form>
         <p-rating
-            [(ngModel)]="value"
+            [(ngModel)]="doctor.rating"
             name="first"
             [stars]="value"
             [readonly]="true"

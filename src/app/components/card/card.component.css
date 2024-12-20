@@ -98,3 +98,7 @@
     background-color: transparent;
     transition: 500ms;
 }
+
+/deep/ .p-rating-icon {
+    cursor: default !important;
+}

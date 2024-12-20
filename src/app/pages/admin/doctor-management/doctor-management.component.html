@@ -10,16 +10,9 @@
                 <div></div>
             </div>
             <div class="category-list-cont">
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
-                <app-category-list-item class="category-list"/>
+                @for (doctor of doctors; track doctor.id) {
+                    <app-category-list-item [doctor]="doctor" [index]="doctor.id" class="category-list"/>
+                }
             </div>
 
         </div>
